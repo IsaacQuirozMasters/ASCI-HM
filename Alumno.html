@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="estilos.css" type="text/css"/>
+    </head>
+  <body>
+<!--------------------------------- inicio contenedor--------------------------------------------------->
+    <div id="contenedor">     
+<!-----------------------------menu vertical------------------------------------------------------------>
+      <div id="menu" class="menu-vertical" >
+        <ul>
+          <li><a href="" ></a></li>
+          <li><a href="" ></a></li>
+        </ul>
+      </div>
+  <!---------------------------------- contenido------------------------------------------------------->    
+      
+     <!--<div id="contenido" >
+        <h1>Uso del elemento &quot;div&quot; y del atributo <i>id</i></h1>
+         <p>Párrafo en el contenido de la página.</p>
+       </div>-->
+    <!-------------------------------- tabla ------------------------------------------------------------>  
+    <div class="lista">
+      <table  class="table table-responsive table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="titulo_top" scope="col">Intrucciones</th>
+            <th class="titulo_top" scope="col">Descripcion</th>
+            <th class="titulo_top" scope="col">Fecha</th>
+            <th class="titulo_top" scope="col">Fecha de entrega</th>
+          </tr>
+        </thead>
+        <tbody id="container">
+        </tbody>
+      </table>
+    </div>     
+  </body>
+</html>
+<script>
+  
+
+  axios.get('http://localhost:8037/tareas')
+.then(response => {
+console.log(response.data);
+tarea(response.data); 
+}, error => {
+console.log(error);
+});
+
+function tareas(tareas) {
+const container = document.getElementById('container')
+tareas.forEach(tarea => {
+container.innerHTML = `
+${container.innerHTML}
+<tr>
+    <td>${tarea.instrucciones}</td>
+    <td>${tarea.descripcion}</td>
+    <td>${tarea.fecha1}</td>
+    <td>${tarea.fecha2}</td>
+</tr>
+`;
+});
+}
+</script>
